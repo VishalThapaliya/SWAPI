@@ -7,6 +7,8 @@ class Starships extends React.Component{
         this.state = {
             starshipName: [],
             visibleStarship: [],
+            pilotName: [],
+            //test: []
         }
     } 
 
@@ -22,20 +24,31 @@ class Starships extends React.Component{
                     //starshipModel: searchShip.data.results
                     visibleStarship: searchShip.data.results
                 })
-
-                return axios.get(`https://swapi.co/api/people/`);
+                
+                for(var i = 0; i<this.state.visibleStarship.length; i++){
+                    this.setState({
+                        pilotName: this.state.visibleStarship[i].pilots
+                    })    
+                    console.log(this.state.pilotName);
+                }
+                
+                //return axios.get(this.state.pilotName);
             })
-            .then((pilot) => {
-                console.log(pilot.data.results);
-                this.setState({
-                    pilotName: pilot.data.results
-                })
-            })
+            .then(
+                axios.get(this.state.pilotName)
+                    .then((pilot) => {
+                        
+                        this.setState({
+                            //test: pilot.data.results
+                        })
+                    })
+            )
             .catch((error) => {
                 console.log('Request Failed', error);
             });
     }
     
+
     filterShips = () => {
         const filterStarship = this.state.starshipName.filter(getShips => {
           return (
