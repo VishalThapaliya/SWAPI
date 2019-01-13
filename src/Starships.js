@@ -62,11 +62,11 @@ class Starships extends React.Component{
                     </div>
                 </div>    
 
-                <div className="container">
+                <div className="container-fluid">
                     <div className="row">
                         {this.state.visibleStarship.map(getStarships => {
                             return(
-                                <div key={getStarships.name} className="card w-25 m-3">
+                                <div key={getStarships.name} className="card custom-width m-3 ml-5">
                                     <img src={require("./img/starship.jpg")} className="card-img-top" alt="..." />
                                     <div className="card-body">
                                         <h5 className="card-title">{getStarships.name}</h5>
