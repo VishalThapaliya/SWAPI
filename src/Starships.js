@@ -7,8 +7,8 @@ class Starships extends React.Component{
         super();
         this.state = {
             starshipName: [],
-            visibleStarship: [],
-            pilotName: [],
+            visibleStarship: []
+            //pilotName: []
         }
     } 
 
