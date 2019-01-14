@@ -63,8 +63,8 @@ class Starships extends React.Component{
                                         <h5 className="card-title">{getStarships.name}</h5>
                                         <p className="card-text">Model: {getStarships.model}</p>
                                         <p>
-                  Pilots: <Pilot pilotList={getStarships.pilots}/>
-                </p>
+                                            Pilots: <Pilot pilotList={getStarships.pilots}/>
+                                        </p>
                                     </div>
                                 </div>
                             )
