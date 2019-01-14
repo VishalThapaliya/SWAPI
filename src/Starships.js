@@ -1,5 +1,6 @@
 import React from "react";
-import axios from "axios";
+//import axios from "axios";
+import Pilot from "./pilot";
 
 class Starships extends React.Component{
     constructor(){
@@ -8,7 +9,6 @@ class Starships extends React.Component{
             starshipName: [],
             visibleStarship: [],
             pilotName: [],
-            //test: []
         }
     } 
 
@@ -16,36 +16,14 @@ class Starships extends React.Component{
         
         const starshipUrl = `https://swapi.co/api/starships/`;
         
-        axios.get(starshipUrl)
-            .then((searchShip) => {
+        fetch(starshipUrl).then(response => response.json())
+            .then((starshipList) => {
                 //console.log(searchShip.data.results);
                 this.setState({
-                    starshipName: searchShip.data.results,
-                    //starshipModel: searchShip.data.results
-                    visibleStarship: searchShip.data.results
+                    starshipName: starshipList.results,
+                    visibleStarship: starshipList.results
                 })
-                
-                for(var i = 0; i<this.state.visibleStarship.length; i++){
-                    this.setState({
-                        pilotName: this.state.visibleStarship[i].pilots
-                    })    
-                    console.log(this.state.pilotName);
-                }
-                
-                //return axios.get(this.state.pilotName);
             })
-            .then(
-                axios.get(this.state.pilotName)
-                    .then((pilot) => {
-                        
-                        this.setState({
-                            //test: pilot.data.results
-                        })
-                    })
-            )
-            .catch((error) => {
-                console.log('Request Failed', error);
-            });
     }
     
 
@@ -84,7 +62,9 @@ class Starships extends React.Component{
                                     <div className="card-body">
                                         <h5 className="card-title">{getStarships.name}</h5>
                                         <p className="card-text">Model: {getStarships.model}</p>
-                                        <p className="card-text">Pilot: {getStarships.pilots}</p>
+                                        <p>
+                  Pilots: <Pilot pilotList={getStarships.pilots}/>
+                </p>
                                     </div>
                                 </div>
                             )
